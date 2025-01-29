@@ -1,0 +1,22 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create_customers" author="Ahmed.Baz" labels="bank_service">
+        <sql>
+            create table customers
+            (
+                id         bigserial primary key,
+                first_name varchar(100) not null,
+                last_name  varchar(100),
+                email      varchar(100) not null,
+                password   varchar(200) not null,
+                role       varchar(50)  not null,
+                constraint customers_email_ukey unique (email)
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

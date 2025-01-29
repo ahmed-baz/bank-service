@@ -1,0 +1,24 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="insert_users" author="Ahmed.Baz" labels="bank_service">
+        <sql>
+            insert into users (username, password, enabled)
+            values ('ahmedbaz', '{noop}12345', true);
+
+            insert into authorities (username, authority)
+            values ('ahmedbaz', 'read');
+
+            insert into users (username, password, enabled)
+            values ('admin@tesla.com', '{bcrypt}$2a$12$F9s8wf9Jd0iKP4zW1mlxoOg7ptPc6E4qOEVpWVmxnhGcvH8.8ra2a', true);
+
+            insert into authorities (username, authority)
+            values ('admin@tesla.com', 'admin');
+        </sql>
+
+    </changeSet>
+
+</databaseChangeLog>

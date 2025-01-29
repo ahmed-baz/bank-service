@@ -1,0 +1,29 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create_users" author="Ahmed.Baz" labels="bank_service">
+        <sql>
+            create table users
+            (
+                id       bigserial primary key,
+                username varchar(255) not null,
+                password varchar(255) not null,
+                enabled  boolean default true,
+                constraint users_username_ukey unique (username)
+            );
+        </sql>
+        <sql>
+            create table authorities
+            (
+                id        bigserial primary key,
+                username  varchar(255) not null,
+                authority varchar(255) not null,
+                constraint users_username_fkey foreign key (username) references users (username)
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

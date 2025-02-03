@@ -1,5 +1,6 @@
 package com.tesla.bank.config;
 
+import com.tesla.bank.handler.CustomBasicAuthEntryPointHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -28,7 +29,7 @@ public class DummySecurityConfig {
         //http.formLogin(AbstractHttpConfigurer::disable);
         //http.httpBasic(AbstractHttpConfigurer::disable);
         http.formLogin(withDefaults());
-        http.httpBasic(withDefaults());
+        http.httpBasic(basicConfig -> basicConfig.authenticationEntryPoint(new CustomBasicAuthEntryPointHandler()));
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }

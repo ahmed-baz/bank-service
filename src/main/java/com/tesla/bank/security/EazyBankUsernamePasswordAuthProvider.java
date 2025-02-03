@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile("!prod")
+@Profile("test")
 @RequiredArgsConstructor
 public class EazyBankUsernamePasswordAuthProvider implements AuthenticationProvider {
 

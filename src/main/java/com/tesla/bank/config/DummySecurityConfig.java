@@ -14,12 +14,12 @@ import org.springframework.security.web.authentication.password.HaveIBeenPwnedRe
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
-@Profile("prod")
-public class SecurityConfig {
+@Profile("!prod")
+public class DummySecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.requiresChannel(rcc -> rcc.anyRequest().requiresSecure())
+        http.requiresChannel(rcc -> rcc.anyRequest().requiresInsecure())
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/api/v1/balance/*", "/api/v1/loans/*", "/api/v1/cards/*", "/api/v1/accounts/*").authenticated()
                         .requestMatchers("/api/v1/customers/*", "/api/v1/contacts/**", "/error").permitAll()
